@@ -1,22 +1,26 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { socialAPI } from "../../../api/api";
 import { Box } from "@mui/material";
 import { UsersList } from "../../organism/UsersList/UsersList";
+import { userThunkCreator } from "../../../store/reducers/usersReducer";
 
 export const Users = () => {
-  const { users } = useSelector((state) => state.usersData);
+
+  const { users ,currentPage,isLoading} = useSelector((state) => state.usersData);
   const dishpatch = useDispatch();
-  console.log(users);
 
   useEffect(() => {
-    socialAPI.getUsers(dishpatch);
+    dishpatch(userThunkCreator())
   }, []);
 
   return (
     <>
     <Box>
-      <UsersList users={users} />
+      {
+        isLoading ? <h1>loading...</h1> : <UsersList users={users} />
+      }
+      
     </Box>
     </>
   );
