@@ -1,12 +1,14 @@
 import { socialAPI } from "../../api/api";
 
 const GET_USERS = "get/users";
-const CHANGE_PAGE = "change/page"
-const IS_LOADING ='is/loading'
+const CHANGE_PAGE = "change/page";
+const IS_LOADING = "is/loading";
+const TOTAL_USERS_COUNT = "total/users/count";
 const initState = {
   users: [],
-  currentPage : 1,
-  isLoading : false
+  currentPage: 1,
+  isLoading: false,
+  totalUsersCount: 0,
 };
 
 export const usersReducer = (state = initState, action) => {
@@ -16,34 +18,41 @@ export const usersReducer = (state = initState, action) => {
         ...state,
         users: action.payload,
       };
-      case CHANGE_PAGE :
-        return{
-          ...state,
-          currentPage : action.payload
-        }
-        case IS_LOADING:
-          return{
-            ...state,
-            isLoading : action.payload
-          }
+    case CHANGE_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
+      };
+    case IS_LOADING:
+      return {
+        ...state,
+        isLoading: action.payload,
+      };
+    case TOTAL_USERS_COUNT:
+      return {
+        ...state,
+        totalUsersCount: action.payload,
+      };
     default:
       return state;
   }
 };
 
-
 const getUsersAC = (data) => ({ type: GET_USERS, payload: data });
-export const changePageAC = (newPage) => ({type : CHANGE_PAGE ,payload : newPage})
-const isLoadingAC =(bool) => ({type : IS_LOADING  , payload : bool})
+export const changePageAC = (newPage) => ({
+  type: CHANGE_PAGE,
+  payload: newPage,
+});
+const isLoadingAC = (bool) => ({ type: IS_LOADING, payload: bool });
+const totalUsersCountAC = (totalCount) => ({type : TOTAL_USERS_COUNT,payload : totalCount})
 
-export const userThunkCreator = () => {
+export const userThunkCreator = (page) => {
   return (dispatch) => {
-
-        dispatch(isLoadingAC(true))
-        socialAPI.getUsers()
-        .then((res) => {
-          dispatch(getUsersAC(res.data.items))
-           dispatch(isLoadingAC(false))
-        })
-  }
-}
+    dispatch(isLoadingAC(true));
+    socialAPI.getUsers(page).then((res) => {
+      dispatch(getUsersAC(res.data.items));
+      dispatch(totalUsersCountAC(res.data.totalCount))
+      dispatch(isLoadingAC(false));
+    });
+  };
+};

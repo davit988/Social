@@ -6,10 +6,11 @@ const instance = axios.create({
 })
 
 export const socialAPI = {
-    getUsers(){
-        return instance.get(`/users?count=100&page=1`)
-        // .then((res) => dispatch(getUsersAC(res.data.items))
-        
+    getUsers(page = 1){
+        return instance.get(`/users?count=100&page=${page}`)
+    },
+    login(body){
+         return instance.post('/auth/login',body)   
     }
 }
 

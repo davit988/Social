@@ -1,20 +1,28 @@
 import { Box } from "@mui/material";
 import React from "react";
 import { UsersCard } from "../../molecules/UsersCard/UsersCard";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changePageAC } from "../../../store/reducers/usersReducer";
 
 export const UsersList = ({ users }) => {
   const dispatch = useDispatch()
-  const foo = () => {
+   const {totalUsersCount} = useSelector((state) => state.usersData)
 
-  }
+
+  let pageCount = Math.round(totalUsersCount/100) 
+  let pages = []
+
+ for(let i = 1;i<= pageCount;i++){
+  pages.push(i)
+ }
+ 
+
   return (
     <>
       <Box>
-        <button onClick={() => dispatch(foo)}>1</button>
-        <button onClick={() => dispatch(changePageAC(2))}>2</button>
-        <button onClick={() => dispatch(changePageAC(3))}>3</button>
+        {
+          pages.map((elm) => <button onClick={() => dispatch(changePageAC(elm))}>{elm}</button>)
+        }
         <Box sx={{display  : "flex", justifyContent:"center", alignItems:"center", gap :"20px", flexWrap :"wrap"}}>
           {users?.map((elm) => (
             <UsersCard key={elm.id} user={elm} />

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { socialAPI } from "../../../api/api";
 import { Box } from "@mui/material";
 import { UsersList } from "../../organism/UsersList/UsersList";
 import { userThunkCreator } from "../../../store/reducers/usersReducer";
@@ -11,8 +10,8 @@ export const Users = () => {
   const dishpatch = useDispatch();
 
   useEffect(() => {
-    dishpatch(userThunkCreator())
-  }, []);
+    dishpatch(userThunkCreator(currentPage))
+  }, [currentPage]);
 
   return (
     <>
