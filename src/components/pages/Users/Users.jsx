@@ -5,22 +5,18 @@ import { UsersList } from "../../organism/UsersList/UsersList";
 import { userThunkCreator } from "../../../store/reducers/usersReducer";
 
 export const Users = () => {
-
-  const { users ,currentPage,isLoading} = useSelector((state) => state.usersData);
+  const { users, currentPage, isLoading } = useSelector(
+    (state) => state.usersData
+  );
   const dishpatch = useDispatch();
 
   useEffect(() => {
-    dishpatch(userThunkCreator(currentPage))
+    dishpatch(userThunkCreator(currentPage));
   }, [currentPage]);
 
   return (
     <>
-    <Box>
-      {
-        isLoading ? <h1>loading...</h1> : <UsersList users={users} />
-      }
-      
-    </Box>
+      <Box>{isLoading ? <h1>loading...</h1> : <UsersList users={users} />}</Box>
     </>
   );
 };

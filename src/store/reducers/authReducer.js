@@ -22,13 +22,10 @@ const loginAC = (data) => ({ type: LOGIN, payload: data });
 
 export const loginThunk = (body) => {
   return (dispatch) => {
-  socialAPI.login(body)
-  .then((res) => {
-    dispatch(loginAC(res.data.data.userId))
-    
-  }
-  )
-  }
-}
+    socialAPI.login(body).then((res) => {
+      dispatch(loginAC(res.data.data.userId));
+    });
+  };
+};
 
 export default authReduccer;

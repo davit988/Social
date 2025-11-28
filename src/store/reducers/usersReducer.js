@@ -4,11 +4,14 @@ const GET_USERS = "get/users";
 const CHANGE_PAGE = "change/page";
 const IS_LOADING = "is/loading";
 const TOTAL_USERS_COUNT = "total/users/count";
+
 const initState = {
   users: [],
   currentPage: 1,
   isLoading: false,
   totalUsersCount: 0,
+  start: 1,
+  end: 10,
 };
 
 export const usersReducer = (state = initState, action) => {
@@ -33,6 +36,7 @@ export const usersReducer = (state = initState, action) => {
         ...state,
         totalUsersCount: action.payload,
       };
+
     default:
       return state;
   }
@@ -44,14 +48,17 @@ export const changePageAC = (newPage) => ({
   payload: newPage,
 });
 const isLoadingAC = (bool) => ({ type: IS_LOADING, payload: bool });
-const totalUsersCountAC = (totalCount) => ({type : TOTAL_USERS_COUNT,payload : totalCount})
+const totalUsersCountAC = (totalCount) => ({
+  type: TOTAL_USERS_COUNT,
+  payload: totalCount,
+});
 
 export const userThunkCreator = (page) => {
   return (dispatch) => {
     dispatch(isLoadingAC(true));
     socialAPI.getUsers(page).then((res) => {
       dispatch(getUsersAC(res.data.items));
-      dispatch(totalUsersCountAC(res.data.totalCount))
+      dispatch(totalUsersCountAC(res.data.totalCount));
       dispatch(isLoadingAC(false));
     });
   };

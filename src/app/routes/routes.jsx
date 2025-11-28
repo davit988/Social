@@ -8,14 +8,14 @@ export const Router = createBrowserRouter([
     path: "/",
     element: <Layout />,
     children: [
-        {
-            index : true,
-            element : <Home/>
-        },
-        {
-            path : "/users",
-            element : <Users/>
-        }
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "/users",
+        element: <Users />,
+      },
     ],
   },
 ]);

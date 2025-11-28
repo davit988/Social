@@ -18,10 +18,8 @@ const pages = [
 ];
 
 export function Header() {
-  
-
   return (
-    <AppBar position="sticky" color="error" sx={{ mb: "30px" }}>
+    <AppBar position="sticky" sx={{ mb: "30px", background: "#DC143C" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <InstagramIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -42,7 +40,7 @@ export function Header() {
                 to={page.path}
                 key={page.path}
                 sx={{ my: 2, color: "white", display: "block" }}
-                variant="contained"
+                variant="text"
               >
                 {page.title}
               </Button>
@@ -50,7 +48,7 @@ export function Header() {
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton  sx={{ p: 0 }}>
+              <IconButton sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>

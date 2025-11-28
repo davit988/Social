@@ -10,7 +10,9 @@ export const Home = () => {
     e.preventDefault();
     let body = { email, password };
     console.log(email, password);
-    dispatch(loginThunk({email : 'hakobyan95narek@gmail.com',password : 'narek95' }))
+    dispatch(
+      loginThunk({ email: "hakobyan95narek@gmail.com", password: "narek95" })
+    );
   };
   return (
     <div>
