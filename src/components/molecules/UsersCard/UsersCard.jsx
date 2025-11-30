@@ -28,7 +28,7 @@ export function UsersCard({ user }) {
         </Button>
         <Button
           component={NavLink}
-          to="/"
+          to={`/users/profile/${user.id}`}
           variant="contained"
           size="small"
           sx={{ background: "#DC143C" }}

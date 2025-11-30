@@ -1,19 +1,26 @@
 import React, { useState } from "react";
 import { loginThunk } from "../../../store/reducers/authReducer";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 export const Home = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const { userId } = useSelector((state) => state.authData);
   const handleSubmit = (e) => {
     e.preventDefault();
     let body = { email, password };
-    console.log(email, password);
+
     dispatch(
       loginThunk({ email: "hakobyan95narek@gmail.com", password: "narek95" })
     );
   };
+  console.log(userId);
+
+  if (userId) {
+    return<Navigate to={`/users/profile/${userId}`}/>
+  }
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
