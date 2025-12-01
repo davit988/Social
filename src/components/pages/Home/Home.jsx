@@ -2,11 +2,17 @@ import React, { useState } from "react";
 import { loginThunk } from "../../../store/reducers/authReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import { useLocalStorage } from "../../../shared/hooks/useLocalStorage";
+
+const useFoo = () => {};
+
 export const Home = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { userId } = useSelector((state) => state.authData);
+
+  const userId = useLocalStorage();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let body = { email, password };
@@ -15,10 +21,9 @@ export const Home = () => {
       loginThunk({ email: "hakobyan95narek@gmail.com", password: "narek95" })
     );
   };
-  console.log(userId);
 
   if (userId) {
-    return<Navigate to={`/users/profile/${userId}`}/>
+    return <Navigate to={`/users/profile/${userId}`} />;
   }
 
   return (
