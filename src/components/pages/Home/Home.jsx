@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { loginThunk } from "../../../store/reducers/authReducer";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { useLocalStorage } from "../../../shared/hooks/useLocalStorage";
 
@@ -18,7 +18,7 @@ export const Home = () => {
     let body = { email, password };
 
     dispatch(
-      loginThunk({ email: "hakobyan95narek@gmail.com", password: "narek95" })
+      loginThunk({ email: "archehovsepyan@gmail.com", password: "208212Dh." })
     );
   };
 

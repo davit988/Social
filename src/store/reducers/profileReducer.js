@@ -31,3 +31,11 @@ export const getProfileThunk = (userId) => {
     })
   };
 };
+
+export const changePhotoThunk =(file) => {
+  return (dispatch) => {
+    socialAPI.changeImg(file)
+    .then((res) => console.log(res)
+    )
+  }
+}

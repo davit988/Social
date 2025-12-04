@@ -2,6 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfileThunk } from "../../../store/reducers/profileReducer";
 import { useParams } from "react-router-dom";
+import { Box } from "@mui/material";
+import { ProfileInfo } from "../../organism/ProfileInfo/ProfileInfo";
+
+
 
 export const Profile = () => {
   const { id } = useParams();
@@ -13,10 +17,9 @@ export const Profile = () => {
 
   return (
     <>
-      <div>
-        <h1>{profile?.fullName}</h1>
-        <h2>{profile?.userId}</h2>
-      </div>
+      <Box>
+        <ProfileInfo profile={profile} />
+      </Box>
     </>
   );
 };

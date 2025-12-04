@@ -1,3 +1,4 @@
+
 import {
   Card,
   CardActions,
@@ -17,6 +18,7 @@ export function UsersCard({ user }) {
         image={user.photos.large ? user.photos.large : userImg}
         title="green iguana"
       />
+
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {user.name}

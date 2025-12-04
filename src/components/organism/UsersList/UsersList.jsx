@@ -1,7 +1,6 @@
 import { Box } from "@mui/material";
 import { UsersCard } from "../../molecules/UsersCard/UsersCard";
 import { useSelector } from "react-redux";
-import { changePageAC } from "../../../store/reducers/usersReducer";
 
 export const UsersList = ({ users }) => {
   const { totalUsersCount } = useSelector((state) => state.usersData);
@@ -17,9 +16,6 @@ export const UsersList = ({ users }) => {
   return (
     <>
       <Box>
-        {/* {pages.map((elm) => (
-          <button onClick={() => dispatch(changePageAC(elm))}>{elm}</button>
-        ))} */}
         <Box
           sx={{
             display: "grid",
