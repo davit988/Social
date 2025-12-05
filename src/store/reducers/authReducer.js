@@ -24,7 +24,7 @@ export const loginThunk = (body) => {
   return (dispatch) => {
     socialAPI.login(body).then((res) => {
       dispatch(loginAC(res.data.data.userId));
-      localStorage.setItem('userId',res.data.data.userId)
+      localStorage.setItem("userId", res.data.data.userId);
     });
   };
 };

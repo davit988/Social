@@ -1,9 +1,11 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import React from "react";
 import { ProfileHeader } from "../../molecules/ProfileHeader/ProfileHeader";
 import { ProfileDescription } from "../../molecules/ProfileDescription/ProfileDescription";
 
 export const ProfileInfo = ({ profile }) => {
+  console.log(profile);
+
   const profileHeader = {
     id: profile?.userId,
     name: profile?.fullName,
@@ -23,7 +25,6 @@ export const ProfileInfo = ({ profile }) => {
 
         <Box sx={{ flexGrow: 1 }}>
           <ProfileDescription profile={profile} />
-          
         </Box>
       </Box>
     </>

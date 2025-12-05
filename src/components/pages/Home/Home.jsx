@@ -1,46 +1,19 @@
-import React, { useState } from "react";
-import { loginThunk } from "../../../store/reducers/authReducer";
-import { useDispatch, } from "react-redux";
-import { Navigate } from "react-router-dom";
-import { useLocalStorage } from "../../../shared/hooks/useLocalStorage";
-
-const useFoo = () => {};
+import { Box } from "@mui/material";
+import { Login } from "../../organism/Login/Login";
+Box;
 
 export const Home = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
-
-  const userId = useLocalStorage();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    let body = { email, password };
-
-    dispatch(
-      loginThunk({ email: "archehovsepyan@gmail.com", password: "208212Dh." })
-    );
-  };
-
-  if (userId) {
-    return <Navigate to={`/users/profile/${userId}`} />;
-  }
-
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="email"
-        />
-        <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="password"
-        />
-        <button>Login</button>
-      </form>
-    </div>
+    <Box
+      sx={{
+        width: "100%",
+        height: "80vh",
+        display: "inline-flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Login />
+    </Box>
   );
 };

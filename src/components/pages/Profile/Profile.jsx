@@ -5,8 +5,6 @@ import { useParams } from "react-router-dom";
 import { Box } from "@mui/material";
 import { ProfileInfo } from "../../organism/ProfileInfo/ProfileInfo";
 
-
-
 export const Profile = () => {
   const { id } = useParams();
   const { profile } = useSelector((state) => state.profileData);

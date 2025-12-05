@@ -25,17 +25,22 @@ const getProfileAC = (profileData) => ({
 
 export const getProfileThunk = (userId) => {
   return (dispatch) => {
-    socialAPI.getProfile(userId)
-    .then((res) => {
-        dispatch(getProfileAC(res.data))
-    })
+    socialAPI.getProfile(userId).then((res) => {
+      dispatch(getProfileAC(res.data));
+    });
   };
 };
 
-export const changePhotoThunk =(file) => {
+export const changePhotoThunk = (file) => {
   return (dispatch) => {
-    socialAPI.changeImg(file)
-    .then((res) => console.log(res)
-    )
-  }
-}
+    socialAPI.changeImg(file).then((res) => console.log(res));
+  };
+};
+
+export const changeInfoThunk = (info) => {
+  console.log(info);
+
+  return () => {
+    socialAPI.changeInfo(info).then((res) => console.log(res));
+  };
+};
